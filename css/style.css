@@ -1,0 +1,128 @@
+body {
+    font-family: combobox, sans-serif;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: #cbcbcc;
+}
+
+
+h1 {
+    padding: 10px;
+    margin-top: 0;
+    background: #202328;
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+
+.player-screen {
+    height: 1000px;
+    width: 500px;
+    min-width: 500px;
+    min-height: 900px;    
+    background-color: #313a42;
+    display: flex;
+    flex-flow: column;
+}
+
+img {
+    height: 400px;
+    width: 350px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+ 
+.header {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column;
+    margin-left: 125px;
+}
+
+.specific {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column;
+    margin-left: 125px;
+}
+
+.parameter {
+    display: flex;
+    flex-flow: row;
+}
+
+.value {
+    margin-left: auto;
+    margin-right: 125px;
+}
+
+.buttons {
+    margin-left: 80px;
+    margin-top: 15px;
+    display: flex;
+    flex-flow: row;
+}
+
+.superhero .buttons {
+    margin-left: 50px;
+    margin-top: 25px;
+    display: flex;
+    flex-flow: row;
+}
+
+.buttons button {
+    background: #48525e;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #cbcbcc;
+}
+
+#evolution {
+    width: 328px;
+}
+
+.statement {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    height: 60px;
+    width: 100%;
+    background-color: #576472;
+    justify-content: center;
+}
+
+.superhero {
+    display: none;
+    flex-flow: column;
+}
+
+#gif {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    height: 80px;
+    width: auto;
+    background-color: #576472;
+    justify-content: center;
+}
+
+input {
+    padding: 5px;
+    margin-right: 15px;
+    width: 50px;
+    background: #202328;
+    border: none;
+    color: #cbcbcc;
+}
