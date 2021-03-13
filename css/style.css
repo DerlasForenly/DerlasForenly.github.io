@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-flow: row;
+    background: black;
+}
+
+.left {
+    height: 100%;
+    width: 400px;
+    min-width: 400px;
+    background: burlywood;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 400px;
+    min-width: 400px;
+    margin-top: 0;
+    display: flex;
+    flex-flow: column;
+    background: burlywood;
+}
