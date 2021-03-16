@@ -1,0 +1,97 @@
+.slide {
+    flex-flow: row;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 600px;
+    width: 1200px;
+    min-height: 600px;
+    min-width: 1000px;
+    background: rgb(232, 232, 232);
+    padding: 20px;
+}
+
+.list {
+    position: inherit;
+    width: 280px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.line {
+    position: inherit;
+    width: 1px;
+    background: white;
+    height: 100%;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.current {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+}
+
+.name {
+    position: inherit;
+    text-align: center;
+    font-size: 25px;
+    padding: 20px;
+    width: 240;
+}
+
+.list label[active="on"] {
+    border-left: 3px solid rgb(145, 171, 255);
+}
+
+.image {
+    position: inherit;
+    height: 100%;
+    width: 50%;
+}
+
+img {
+    height: 80%;
+    width: 100%;
+    position: inherit;
+    border-radius: 5px;
+}
+
+.information {
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 600px;
+}
+
+#actors {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 15px;
+}
+
+#description {
+    word-wrap: break-word;
+}
+
+#title-name {
+    margin-bottom: 0;
+}
+
+#actor0, #actor1, #actor2, #actor3, #actor4 {
+    color: white;
+    border-radius: 7px;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
+    background: rgb(75, 75, 255);
+    margin-right: 20px;
+    text-align: left;
+    padding: 10px;
+}

@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-flow: column;
+}
+
+#add {
+    margin-left: 0;
+}
+
+#clear {
+    margin-right: 0;
+}
+
+.first {
+    position: inherit;
+    height: 70px;
+    width: 80%;
+    background: coral;
+    display: flex;
+    flex-flow: column;
+    padding: 30px;
+}
+
+.buttons {
+    position: inherit;
+    background:cornflowerblue;
+    height: 70px;
+    width: 80%;
+}

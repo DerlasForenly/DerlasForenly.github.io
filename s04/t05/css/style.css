@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-flow: column;
+    padding: 60px;
+}
+
+.block {
+    position: absolute;
+    transform: rotate(-45deg);
+    height: 100px;
+    width: 100px;
+    min-height: 100px;
+    min-width: 100px;
+}
+
+.block[active="on"] {
+    border: none;
+}
+.block[active="off"] {
+    border: 3px dashed gray;
+}
+
+#yellow {
+    background: yellow;
+    top: 50px;
+}
+#purple {
+    background: purple;
+    top: 200px;
+}
+#blue {
+    background: blue;
+    top: 350px;
+}
+#green {
+    background: green;
+    top: 500px;
+}
+#red {
+    background: red;
+    top: 650px;
+}
+#pink {
+    background: pink;
+    top: 800px;
+}

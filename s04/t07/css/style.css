@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    flex-flow: column;
+}
+
+.city {
+    display: flex;
+    width: 100%;
+    background: lightblue;
+    height: 70px;
+    text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.city #city_id {
+    display: flex;
+    margin: auto;
+    vertical-align: middle;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.weather {
+    position: inherit;
+    height: auto;
+    width: 100%;
+    background: whitesmoke;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.day {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.days {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 30px;
+    justify-content: center;
+}
+
+img {
+    height: 200px;
+    width: 150px;
+    border-top: 2px solid rgb(80, 80, 255);
+    background: white;
+}
+
+.date, .temp {
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.main {
+    margin: auto;
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
