@@ -2,10 +2,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-flow: column;
-    padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
+    background-color: rgb(255, 174, 174);
 }
 
 .head {
@@ -21,10 +21,9 @@ footer {
 
 .main-space {
     display: flex;
-    position: inherit;
-    height: 100%;
+    height: 3000px;
     width: 100%;
-    
+    position: inherit;
     flex-flow: row;
     background: tomato;
 }
