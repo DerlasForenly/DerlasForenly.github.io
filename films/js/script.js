@@ -100,6 +100,7 @@ function fill(title_current) {
     }
 }
 
+
 for (let i = 0; i < title.length; i++) {
     titles[i].textContent = title[i].name;
 }

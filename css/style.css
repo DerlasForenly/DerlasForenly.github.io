@@ -14,28 +14,29 @@ body {
 
 footer {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background: turquoise;
 }
 
 .main-space {
-    position: relative;
-    top: 0;
-    left: 0;
+    display: flex;
+    position: inherit;
     height: 100%;
     width: 100%;
-    display: flex;
+    
     flex-flow: row;
     background: tomato;
 }
 
 .left {
+    height: 100%;
+    position: inherit;
     display: flex;
     flex-flow: column;
-    height: 100%;
     width: calc(100% - 300px);
     min-width: 400px;
+    background: lightblue;
 }
 
 .right {
@@ -44,6 +45,8 @@ footer {
     min-width: 200px;
     display: flex;
     flex-flow: column;
+    position: inherit;
+    background: lawngreen;
 }
 
 .ref_a {
