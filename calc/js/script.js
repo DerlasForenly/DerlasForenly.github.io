@@ -2,6 +2,28 @@ let input = document.getElementById('input');
 let write = document.getElementsByClassName('write');
 let history = document.getElementsByClassName("operation");
 let hex_line = document.getElementById('hex_line');
+let converts = document.getElementsByClassName("convert");
+let interactions = document.getElementsByClassName("interaction");
+let button_len = document.getElementById('length');
+
+let kilo = document.getElementById("kilo");
+let gram = document.getElementById("gram");
+let tonn = document.getElementById("tonn");
+let pount = document.getElementById("pount");
+
+let area_m = document.getElementById("area_m");
+let area_k = document.getElementById("area_k");
+let area_c = document.getElementById("area_c");
+let area_f = document.getElementById("area_f");
+
+let kilo_m = document.getElementById("kilo_m");
+let metr = document.getElementById("metr");
+let cent = document.getElementById("cent");
+let feet = document.getElementById("feet");
+
+let cel = document.getElementById("cel");
+let fahr = document.getElementById("fahr");
+let kel = document.getElementById("kel");
 
 let memory_id = 0;
 let memory = "";
@@ -9,6 +31,226 @@ let s_id = 1;
 let systems = ["bin", "dec", "hex"];
 let system_button = document.getElementById('system');
 
+document.getElementById('clear_history').onclick = () => {
+    console.log("Clear history");
+    for (let i of history) {
+       i.textContent = "";
+    }
+}
+weight.onclick = () => {
+    setButtonOnSystem();
+    console.log("weight button");
+    if (converts[0].getAttribute("active") === "no") {
+        converts[0].setAttribute("active", "yes");
+        converts[1].setAttribute("active", "no");
+        converts[2].setAttribute("active", "no");
+        converts[3].setAttribute("active", "no");
+        interactions[0].style.display = "none";
+        setButtonsDisable();
+    } 
+    else {
+        setButtonsNotDisable();
+        setButtonOnSystem();
+        converts[0].setAttribute("active", "no");
+        interactions[0].style.display = "block";
+    }
+}
+area.onclick = () => {
+    setButtonOnSystem();
+    if (converts[3].getAttribute("active") === "no") {
+        converts[0].setAttribute("active", "no");
+        converts[1].setAttribute("active", "no");
+        converts[2].setAttribute("active", "no");
+        converts[3].setAttribute("active", "yes");
+        interactions[0].style.display = "none";
+        setButtonsDisable();
+    }
+    else {
+        setButtonsNotDisable();
+        setButtonOnSystem();
+        interactions[0].style.display = "block";
+        converts[3].setAttribute("active", "no");
+    }
+}
+temperature.onclick = () => {
+    setButtonOnSystem();
+    console.log("temperature button");
+    if (converts[1].getAttribute("active") === "no") {
+        converts[0].setAttribute("active", "no");
+        converts[1].setAttribute("active", "yes");
+        converts[2].setAttribute("active", "no");
+        converts[3].setAttribute("active", "no");
+        interactions[0].style.display = "none";
+        setButtonsDisable();
+    }
+    else {
+        setButtonsNotDisable();
+        setButtonOnSystem();
+        converts[1].setAttribute("active", "no");
+        interactions[0].style.display = "block";
+    }
+}
+button_len.onclick = () => {
+    console.log("length button");
+    if (converts[2].getAttribute("active") === "no") {
+        converts[0].setAttribute("active", "no");
+        converts[1].setAttribute("active", "no");
+        converts[2].setAttribute("active", "yes");
+        converts[3].setAttribute("active", "no");
+        interactions[0].style.display = "none";
+        setButtonsDisable();
+    }
+    else {
+        setButtonsNotDisable();
+        setButtonOnSystem();
+        interactions[0].style.display = "block";
+        converts[2].setAttribute("active", "no");
+    }
+}
+function kilo_oninput() {
+    gram.value = kilo.value * 1000;
+    tonn.value = kilo.value / 1000;
+    pound.value = kilo.value * 2.205;
+};
+function kilo_onchange() {
+    gram.value = kilo.value * 1000;
+    tonn.value = kilo.value / 1000;
+    pound.value = kilo.value * 2.205;
+};
+function gram_oninput() {
+    kilo.value = gram.value / 1000;
+    tonn.value = gram.value / (1000 * 1000);
+    pound.value = gram.value * 2.205 / 1000;
+};
+function gram_onchange() {
+    kilo.value = kilo.value / 1000;
+    tonn.value = kilo.value / (1000 * 1000);
+    pount.value = kilo.value * 2.205 / 1000;
+};
+function tonn_oninput() {
+    gram.value = tonn.value * 1000 * 1000;
+    kilo.value = tonn.value * 1000;
+    pound.value = tonn.value * 2.205 * 1000;
+};
+function tonn_onchange() {
+    gram.value = tonn.value * 1000 * 1000;
+    kilo.value = tonn.value * 1000;
+    pount.value = tonn.value * 2.205 * 1000;
+};
+function pount_oninput() {
+    gram.value = pount.value * 1000;
+    tonn.value = pount.value / 1000;
+    kilo.value = pount.value * 2.205;
+};
+function pount_onchange() {
+    gram.value = pount.value * 1000 / 2.205;
+    tonn.value = pount.value / (1000 * 2.205);
+    kilo.value = pount.value / 2.205;
+};
+function cel_oninput() {
+    kel.value = parseInt(cel.value) + 273;
+    fahr.value = (cel.value * 9 / 5) + 32;
+};
+function cel_onchange() {
+    kel.value = parseInt(cel.value) + 273;
+    fahr.value = (cel.value * 9 / 5) + 32;
+};
+function fahr_oninput() {
+    cel.value = (fahr.value - 32) * 5 / 9;
+    kel.value = parseInt(cel.value) + 273;
+};
+function fahr_onchange() {
+    cel.value = (fahr.value - 32) * 5 / 9;
+    kel.value = parseInt(cel.value) + 273;
+};
+function kel_oninput() {
+    cel.value = kel.value - 273;
+    fahr.value = (cel.value * 9 / 5) + 32;
+};
+function kel_onchange() {
+    cel.value = kel.value - 273;
+    fahr.value = (cel.value * 9 / 5) + 32;
+};
+function kilo_m_oninput() {
+    metr.value = kilo_m.value * 1000;
+    cent.value = kilo_m.value * (1000 * 100);
+    feet.value = kilo_m.value * 3.281 * 1000;
+};
+function kilo_m_onchange() {
+    metr.value = kilo_m.value * 1000;
+    cent.value = kilo_m.value * (1000 * 100);
+    feet.value = kilo_m.value * 3.281 * 1000;
+};
+function metr_oninput() {
+    kilo_m.value = metr.value / 1000;
+    cent.value = metr.value * 100;
+    feet.value = metr.value * 3.281;
+};
+function metr_onchange() {
+    kilo_m.value = metr.value / 1000;
+    cent.value = metr.value * 100;
+    feet.value = metr.value * 3.281;
+};
+function cent_oninput() {
+    metr.value = cent.value / 1000;
+    kilo_m.value = cent.value / (1000 * 100);
+    feet.value = cent.value * 3.281 * 1000;
+};
+function cent_onchange() {
+    metr.value = cent.value / 1000;
+    kilo_m.value = cent.value / (1000 * 100);
+    feet.value = cent.value * 3.281 * 1000;
+};
+function feet_oninput() {
+    cent.value = feet.value / 3.281 * 100;
+    metr.value = feet.value / 3.281;
+    kilo_m.value = feet.value / (3.281 * 1000);
+};
+function feet_onchange() {
+    cent.value = feet.value / 3.281 * 100;
+    metr.value = feet.value / 3.281;
+    kilo_m.value = feet.value / (3.281 * 1000);
+};
+function area_m_oninput() {
+    area_c.value = area_m.value * 10000;
+    area_k.value = area_m.value / 1e+6;
+    area_f.value = area_m.value * 10.764;
+};
+function area_m_onchange() {
+    area_c.value = area_m.value * 10000;
+    area_k.value = area_m.value / 1e+6;
+    area_f.value = area_m.value * 10.764;
+};
+function area_k_oninput() {
+    area_m.value = area_k.value * 1e+6;
+    area_c.value = area_k.value * 1e+10;
+    area_f.value = area_m.value * 10.764;
+};
+function area_k_onchange() {
+    area_m.value = area_k.value * 1e+6;
+    area_c.value = area_k.value * 1e+10;
+    area_f.value = area_m.value * 10.764;
+};
+function area_c_oninput() {
+    area_m.value = area_c.value / 1e+4;
+    area_k.value = area_c.value / 1e+10;
+    area_f.value = area_m.value * 10.764;
+};
+function area_c_onchange() {
+    area_m.value = area_c.value / 1e+4;
+    area_k.value = area_c.value / 1e+10;
+    area_f.value = area_m.value * 10.764;
+};
+function area_f_oninput() {
+    area_m.value = area_f.value / 10.764;
+    area_c.value = area_m.value * 1e+4;
+    area_k.value = area_m.value / 1e+6;
+};
+function area_f_onchange() {
+    area_m.value = area_f.value / 10.764;
+    area_c.value = area_m.value * 1e+4;
+    area_k.value = area_m.value / 1e+6;
+};
 system_button.onclick = () => {
     s_id++;
     if (s_id == 3) {
@@ -16,76 +258,8 @@ system_button.onclick = () => {
     }
     system_button.setAttribute('system', systems[s_id]);
     system_button.textContent = systems[s_id];
-    if (system_button.textContent == "bin") {
-        sign_b.disabled = true;
-        per.disabled = true;
-        fuct.disabled = true;
-        root.disabled = true;
-        exp.disabled = true;
-        power.disabled = true;
-        point.textContent = ".";
-        point.disabled = true;
-        Bb.disabled = true; 
-        Cb.disabled = true; 
-        Db.disabled = true; 
-        Eb.disabled = true; 
-        Fb.disabled = true;
-        n2.disabled = true;
-        n3.disabled = true;
-        n4.disabled = true;
-        n5.disabled = true;
-        n6.disabled = true;
-        n7.disabled = true;
-        n8.disabled = true; 
-        n9.disabled = true;
-    }
-    else if (system_button.textContent == "dec") {
-        sign_b.disabled = false;
-        per.disabled = false;
-        fuct.disabled = false;
-        root.disabled = false;
-        exp.disabled = false;
-        power.disabled = false;
-        point.textContent = ".";
-        Bb.disabled = true; 
-        Cb.disabled = true; 
-        Db.disabled = true; 
-        Eb.disabled = true; 
-        Fb.disabled = true;
-        n2.disabled = false;
-        n3.disabled = false;
-        n4.disabled = false;
-        n5.disabled = false;
-        n6.disabled = false;
-        n7.disabled = false;
-        n8.disabled = false; 
-        n9.disabled = false;
-    }
-    else if(system_button.textContent == "hex") {
-        sign_b.disabled = true;
-        per.disabled = true;
-        fuct.disabled = true;
-        root.disabled = true;
-        exp.disabled = true;
-        point.textContent = "A";
-        point.disabled = false;
-        Bb.disabled = false; 
-        Cb.disabled = false; 
-        Db.disabled = false; 
-        Eb.disabled = false; 
-        Fb.disabled = false;
-        n2.disabled = false;
-        n3.disabled = false;
-        n4.disabled = false;
-        n5.disabled = false;
-        n6.disabled = false;
-        n7.disabled = false;
-        n8.disabled = false; 
-        n9.disabled = false;
-    }
-    else {
-
-    }
+    setButtonOnSystem();
+    
 }
 for (let b of write) {
     b.onclick = () => {
@@ -116,8 +290,6 @@ for (let b of write) {
         if (isOperator(t) && isOperator(inp[inp.length - 1])) {
             inp = inp.slice(0, inp.length - 1);
         }
-
-        console.log(inp);
         inp += t;
         input.textContent = inp; 
     }
@@ -131,7 +303,8 @@ CE.onclick = () => {
     if (input.textContent.length === 0) input.textContent = "0";
 }
 mr.onclick = () => {
-    if (checkB(input.textContent) != 0) return;
+    if (checkB(input.textContent) != 0 || memory == "") return;
+    if (input.textContent == "0") input.textContent = "";
     if (memory == "") memory = getResult(input.textContent);
     else input.textContent += memory;
     console.log("memory read/save: " + memory);
@@ -237,8 +410,9 @@ function getResult(expression) {
         expression = toDec(expression);
     }
     expression = makeCalculations(expression);
-    expression = expression.replace("^", "**");
-    console.log(eval(expression));
+    while(expression.indexOf('^') != -1)
+        expression = expression.replace("^", "**");
+    console.log(expression);
     let res =  eval(expression).toFixed(6);
     return Number(res);
 }
@@ -392,4 +566,99 @@ function toDec(num) {
 
 
     return res;
+}
+function setButtonsDisable() {
+    let buttons = document.getElementsByTagName('button');
+    for (let i of buttons) {
+        if (i.getAttribute('id') != "weight" &&
+        i.getAttribute('id') != "temperature" &&
+        i.getAttribute('id') != "area" &&
+        i.getAttribute('id') != "length") {
+            i.disabled = true;
+        }
+    }
+}
+function setButtonsNotDisable() {
+    let buttons = document.getElementsByTagName('button');
+    for (let i of buttons) {
+        if (i.getAttribute('id') != "weight" &&
+        i.getAttribute('id') != "temperature" &&
+        i.getAttribute('id') != "area" &&
+        i.getAttribute('id') != "length") {
+            i.disabled = false;
+        }
+    }
+}
+function setButtonOnSystem() {
+    console.log('set on system: ' + system_button.textContent);
+    if (system_button.textContent == "bin") {
+        sign_b.disabled = true;
+        per.disabled = true;
+        fuct.disabled = true;
+        root.disabled = true;
+        exp.disabled = true;
+        power.disabled = true;
+        point.textContent = ".";
+        point.disabled = true;
+        Bb.disabled = true; 
+        Cb.disabled = true; 
+        Db.disabled = true; 
+        Eb.disabled = true; 
+        Fb.disabled = true;
+        n2.disabled = true;
+        n3.disabled = true;
+        n4.disabled = true;
+        n5.disabled = true;
+        n6.disabled = true;
+        n7.disabled = true;
+        n8.disabled = true; 
+        n9.disabled = true;
+    }
+    else if (system_button.textContent == "dec") {
+        sign_b.disabled = false;
+        per.disabled = false;
+        fuct.disabled = false;
+        root.disabled = false;
+        exp.disabled = false;
+        power.disabled = false;
+        point.textContent = ".";
+        Bb.disabled = true; 
+        Cb.disabled = true; 
+        Db.disabled = true; 
+        Eb.disabled = true; 
+        Fb.disabled = true;
+        n2.disabled = false;
+        n3.disabled = false;
+        n4.disabled = false;
+        n5.disabled = false;
+        n6.disabled = false;
+        n7.disabled = false;
+        n8.disabled = false; 
+        n9.disabled = false;
+    }
+    else if(system_button.textContent == "hex") {
+        sign_b.disabled = true;
+        per.disabled = true;
+        fuct.disabled = true;
+        root.disabled = true;
+        exp.disabled = true;
+        point.textContent = "A";
+        point.disabled = false;
+        Bb.disabled = false; 
+        Cb.disabled = false; 
+        Db.disabled = false; 
+        Eb.disabled = false; 
+        Fb.disabled = false;
+        n2.disabled = false;
+        n3.disabled = false;
+        n4.disabled = false;
+        n5.disabled = false;
+        n6.disabled = false;
+        n7.disabled = false;
+        n8.disabled = false; 
+        n9.disabled = false;
+    }
+    else {
+
+    }
 }
