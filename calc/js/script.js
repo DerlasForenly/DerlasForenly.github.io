@@ -90,10 +90,7 @@ system_button.onclick = () => {
 for (let b of write) {
     b.onclick = () => {
         let inp = input.textContent;
-        if (b.textContent == "x!" || b.textContent == "x^n" || b.textContent == "*" || b.textContent == "/") {
-
-        }
-        else if (inp === "0") inp = "";
+        
         let t = b.textContent;
         switch (t) {
             case "x!":
@@ -111,12 +108,18 @@ for (let b of write) {
                 }
                 break;
         }
-        if (isOperator(t) && isOperator(inp[inp.length - 1])) {
-            inp = inp.slice(0, 
-            inp.length - 1);
+        if (t == "x!" || t == "x^n" || t == "*" || t == "/") {
+
         }
+        else if (inp === "0" && t != ".") inp = "";
+
+        if (isOperator(t) && isOperator(inp[inp.length - 1])) {
+            inp = inp.slice(0, inp.length - 1);
+        }
+
+        console.log(inp);
         inp += t;
-        input.textContent = inp;               
+        input.textContent = inp; 
     }
 }
 C.onclick  = () => {
@@ -236,7 +239,8 @@ function getResult(expression) {
     expression = makeCalculations(expression);
     expression = expression.replace("^", "**");
     console.log(eval(expression));
-    return eval(expression);
+    let res =  eval(expression).toFixed(6);
+    return Number(res);
 }
 function fillHistory(last_exp) {
     for (let i = history.length - 1; i > 0; i--) {
