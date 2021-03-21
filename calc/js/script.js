@@ -493,16 +493,14 @@ function fillHistory(last_exp) {
     for (let i = history.length - 1; i > 0; i--) {
         history[i].textContent = history[i - 1].textContent;
     }
-    last_exp = makeCalculations(last_exp);
-    console.log("in fill: " + last_exp);
     if (system_button.textContent == "bin") {
-        history[0].textContent = last_exp + "=" + eval(toDec(last_exp)).toString(2);
+        history[0].textContent = last_exp + "=" + eval(makeCalculations(toDec(last_exp))).toString(2);
     }
     else if (system_button.textContent == "hex") {
-        history[0].textContent = last_exp + "=" + eval(toDec(last_exp)).toString(16);
+        history[0].textContent = last_exp + "=" + eval(makeCalculations(toDec(last_exp))).toString(16);
     }
     else {
-        history[0].textContent = last_exp + "=" + eval(last_exp);
+        history[0].textContent = last_exp + "=" + eval(makeCalculations(last_exp));
     }
     
 }
