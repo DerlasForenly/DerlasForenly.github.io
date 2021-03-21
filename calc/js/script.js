@@ -279,6 +279,9 @@ for (let b of write) {
                 if (isPointExist(findLastNumber(inp))) {
                     t = "";
                 }
+                else if (isOperator(inp[inp.length - 1])) {
+                    t = "0.";
+                }
                 break;
         }
         if (t == "x!" || t == "x^n" || t == "*" || t == "/") {
