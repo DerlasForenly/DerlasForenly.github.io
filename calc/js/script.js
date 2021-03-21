@@ -31,6 +31,14 @@ let s_id = 1;
 let systems = ["bin", "dec", "hex"];
 let system_button = document.getElementById('system');
 
+let max_input_len = 30;
+let size_check_l = document.getElementById("size_check");
+
+function updateSize() {
+    size_check_l.textContent = input.textContent.length + "/30"; 
+}
+updateSize();
+
 document.getElementById('clear_history').onclick = () => {
     console.log("Clear history");
     for (let i of history) {
@@ -262,6 +270,10 @@ system_button.onclick = () => {
 }
 for (let b of write) {
     b.onclick = () => {
+        if (input.textContent.length >= max_input_len) {
+            console.log("length is bigger than you can have");
+            return;
+        } 
         let inp = input.textContent;
         
         let t = b.textContent;
@@ -297,22 +309,30 @@ for (let b of write) {
         }
         inp += t;
         input.textContent = inp; 
+        updateSize()
     }
 }
 C.onclick  = () => {
     input.textContent = "0";
+    updateSize();
 }
 CE.onclick = () => {
     input.textContent = input.textContent.slice(0, 
                         input.textContent.length - 1);
     if (input.textContent.length === 0) input.textContent = "0";
+    updateSize();
 }
 mr.onclick = () => {
+    if (input.textContent.length >= max_input_len) {
+        console.log("length is bigger than you can have");
+        return;
+    }
     if (checkB(input.textContent) != 0) return;
     if (input.textContent == "0") input.textContent = "";
     if (memory == "") memory = getResult(input.textContent);
     else input.textContent += memory;
     console.log("memory read/save: " + memory);
+    updateSize();
 }
 mc.onclick = () => {
     if (checkB(input.textContent) != 0) return;
@@ -454,6 +474,7 @@ equal.onclick = () => {
         console.log("dec calculations");
         input.textContent = getResult(temp);
     }
+    updateSize();
 }
 function getResult(expression) {
     if (checkB(input.textContent) != 0) {
@@ -473,6 +494,7 @@ function fillHistory(last_exp) {
         history[i].textContent = history[i - 1].textContent;
     }
     last_exp = makeCalculations(last_exp);
+    console.log("in fill: " + last_exp);
     if (system_button.textContent == "bin") {
         history[0].textContent = last_exp + "=" + eval(toDec(last_exp)).toString(2);
     }
@@ -538,14 +560,14 @@ function makeCalculations(exp) {
             }
             let r = getResult(exp.slice(i + 1, exp.indexOf("!")));
             exp = exp.replace(exp.slice(i + 1, exp.indexOf("!") + 1), "factorial(" + r + ")");
-            break;
         }
         else {
             let last = exp.slice(0, exp.indexOf("!"));
-            last = findLastNumber(last);
+            last = findlastExpression(last);
             exp = exp.replace(last + "!", "factorial(" + last + ")");
         }
     }
+    updateSize();
     return exp;
 }
 function factorial(n) {

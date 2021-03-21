@@ -3,12 +3,24 @@
     src: url('../assets/font/font.ttf') format('truetype') /* Safari, Android, iOS */
 }
 
+#size_check {
+    font-size: 18px;
+    color: rgba(245, 245, 245, 0.5);
+    width: 30px;
+    padding-top: 45px;
+    height: auto;
+}
+
 #back {
     position: fixed;
     top: 15px;
     left: 15px;
     height: 50px;
     width: auto;
+}
+.input_line {
+    display: flex;
+    flex-flow: row;
 }
 
 #back:hover {
@@ -51,7 +63,7 @@ img {
     display: flex;
     flex-flow: row-reverse;
     color: whitesmoke;
-    width: calc(100% - 30px);
+    width: calc(100% - 60px);
     padding-top: 30px;
     padding-left: 15px;
     padding-right: 15px;
