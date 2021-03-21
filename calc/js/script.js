@@ -302,7 +302,7 @@ CE.onclick = () => {
     if (input.textContent.length === 0) input.textContent = "0";
 }
 mr.onclick = () => {
-    if (checkB(input.textContent) != 0 || memory == "") return;
+    if (checkB(input.textContent) != 0) return;
     if (input.textContent == "0") input.textContent = "";
     if (memory == "") memory = getResult(input.textContent);
     else input.textContent += memory;
@@ -435,7 +435,9 @@ equal.onclick = () => {
     }
     let temp = input.textContent;
     console.log(findlastExpression(temp));
+    console.log("dec calculations");
     fillHistory(temp);
+    console.log("dec calculations");
     if (system_button.textContent == "hex") {
         input.textContent = getResult(temp).toString(16);
     }
@@ -443,6 +445,7 @@ equal.onclick = () => {
         input.textContent = getResult(temp).toString(2);
     }
     else {
+        console.log("dec calculations");
         input.textContent = getResult(temp);
     }
 }
@@ -457,15 +460,25 @@ function getResult(expression) {
     expression = makeCalculations(expression);
     while(expression.indexOf('^') != -1)
         expression = expression.replace("^", "**");
-    console.log(expression);
+    console.log("Expression" + expression);
     let res =  eval(expression).toFixed(6);
     return Number(res);
 }
 function fillHistory(last_exp) {
     for (let i = history.length - 1; i > 0; i--) {
-        history[i].textContent = history[i - 1].textContent
+        history[i].textContent = history[i - 1].textContent;
     }
-    history[0].textContent = last_exp;
+    last_exp = makeCalculations(last_exp);
+    if (system_button.textContent == "bin") {
+        history[0].textContent = last_exp + "=" + eval(toDec(last_exp)).toString(2);
+    }
+    else if (system_button.textContent == "hex") {
+        history[0].textContent = last_exp + "=" + eval(toDec(last_exp)).toString(16);
+    }
+    else {
+        history[0].textContent = last_exp + "=" + eval(last_exp);
+    }
+    
 }
 function isOperator(o) {
     if (o === "+" || 
@@ -659,6 +672,7 @@ function setButtonOnSystem() {
         exp.disabled = false;
         power.disabled = false;
         point.textContent = ".";
+        point.disabled = false;
         Bb.disabled = true; 
         Cb.disabled = true; 
         Db.disabled = true; 
