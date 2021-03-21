@@ -272,7 +272,7 @@ for (let b of write) {
             case "x^n":
                 t = "^";
                 break;
-            case "x^n":
+            case "xn":
                 t = "^";
                 break;
             case ".":
@@ -282,6 +282,9 @@ for (let b of write) {
                 else if (isOperator(inp[inp.length - 1])) {
                     t = "0.";
                 }
+                break;
+            case "√x":
+                t = "√(";
                 break;
         }
         if (t == "x!" || t == "x^n" || t == "*" || t == "/") {
@@ -332,14 +335,14 @@ mm.onclick = () => {
     }
     console.log("Memory after minus: " + memory);
 }
-root.onclick = () => {
-    let temp = input.textContent;
-    let last = findlastExpression(temp);
-    temp = temp.slice(0, temp.length - last.length);
-    last = "Math.sqrt(" + last + ")";
-    console.log(temp + last);
-    input.textContent = temp + getResult(last);
-}
+// root.onclick = () => {
+//     let temp = input.textContent;
+//     let last = findlastExpression(temp);
+//     temp = temp.slice(0, temp.length - last.length);
+//     last = "Math.sqrt(" + last + ")";
+//     console.log(temp + last);
+//     input.textContent = temp + getResult(last);
+// }
 exp.onclick = () => {
     let temp = input.textContent;
     let last = findlastExpression(temp);
@@ -461,8 +464,6 @@ function getResult(expression) {
         expression = toDec(expression);
     }
     expression = makeCalculations(expression);
-    while(expression.indexOf('^') != -1)
-        expression = expression.replace("^", "**");
     console.log("Expression" + expression);
     let res =  eval(expression).toFixed(6);
     return Number(res);
@@ -519,6 +520,10 @@ function findLastNumber(expression) {
     return res;
 }
 function makeCalculations(exp) {
+    while(exp.indexOf('√') != -1)
+        exp = exp.replace("√", "Math.sqrt");
+    while(exp.indexOf('^') != -1)
+        exp = exp.replace("^", "**");
     while (exp.indexOf("!") !== -1) {
         if (exp[exp.indexOf("!") - 1] === ")") {
             let b = 1;
