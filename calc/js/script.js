@@ -259,7 +259,6 @@ system_button.onclick = () => {
     system_button.setAttribute('system', systems[s_id]);
     system_button.textContent = systems[s_id];
     setButtonOnSystem();
-    
 }
 for (let b of write) {
     b.onclick = () => {
@@ -361,27 +360,73 @@ sign_b.onclick = () => {
     }
 }
 per.onclick = () => {
-
-    // let temp = input.textContent;
-    // let last = findLastNumber(temp);
-    // if (last == temp) {
-    //     temp = temp + "/" + 100;
-    // }
-    // else {
-    //     let sign = temp.slice(temp.length - last.length - 1, temp.length - last.length);
-    //     temp = temp.slice(0, temp.length - last.length - 1);
-    //     temp = getResult(temp) + sign + last;
-    //     let first = temp.slice(0, temp.length - last.length - 1);
-    //     if (sign === "*") {
-    //         temp = first + sign + last + "/" + 100;
-    //     }
-    //     else {
-    //         temp = first + sign + first + "*" + last + "/" + 100;
-    //     }
-    // }
-    
-    // fillHistory(temp);
-    // input.textContent = getResult(temp);
+    let temp = input.textContent;
+    //let last = findLastNumber(temp);
+    let last = findlastExpression(temp);
+    if (last == temp) {
+        temp = temp + "/" + 100;
+    }
+    else {
+        let sign = temp.slice(temp.length - last.length - 1, temp.length - last.length);
+        temp = temp.slice(0, temp.length - last.length - 1);
+        let num = '';
+        console.log("temp: " + temp[temp.length - 1]);
+        if (temp[temp.length - 1] !== ')') {
+            //num = findLastNumber(temp);
+            num = findlastExpression(temp);
+        } else {
+            let b = 1;
+            let i = temp.length - 2;
+            for (; b !== 0; i--) {
+                if (temp[i] === "(") {
+                    b--;
+                }
+                else if (temp[i] === ")") {
+                    b++;
+                }
+            }
+            let pars = temp.slice(i+ 2, temp.length - 1);
+            console.log(pars);
+            num = getResult(pars);
+        }
+        console.log("num: " + num);
+        temp = getResult(temp) + sign + last;
+        let first = temp.slice(0, temp.length - last.length - 1);
+        if (sign === "*") {
+            temp = num + sign + last + "/" + 100;
+        }
+        else {
+            temp = first + sign + num + "*" + last + "/" + 100;
+            console.log(temp);
+        }
+    }
+    fillHistory(temp);
+    input.textContent = getResult(temp);
+    /*
+    if (checkB(input.textContent) != 0) {
+        input.textContent = "Error";
+        return; 
+    }
+    let temp = input.textContent;
+    let percent = findlastExpression(temp);
+    if (temp == percent) {
+        temp = eval(temp + "/100");
+    }
+    else {
+        temp = temp.slice(0, temp.length - percent.length);
+        let s = temp[temp.length - 1];
+        temp = temp.slice(0, temp.length - 1);
+        if (s == "-" || s == "+") {
+            percent = "(" + temp + "*" + percent + "/" + 100 + ")";
+            percent = eval(percent);
+            temp = temp + s + percent;
+        }
+        else {
+            percent = eval("(" + percent + "/100)");
+            temp += s + percent;
+        }
+    }
+    input.textContent = temp;*/
 }
 equal.onclick = () => {
     if (checkB(input.textContent) != 0) {
@@ -496,7 +541,6 @@ function findlastExpression(exp) {
     let result = [];
     let str = "";
     if (exp[exp.length - 1] == ")") {
-        console.log(exp);
         let i = exp.length - 2;
         let b = 1;
         for (; b !== 0; i--) {
@@ -517,8 +561,6 @@ function findlastExpression(exp) {
     else {
         str = findLastNumber(exp);
     }
-    
-    console.log("last exp: " + str);
     return str;
 }
 function checkB(str) {
@@ -558,13 +600,6 @@ function toDec(num) {
         res += i;
     }
     res = res.replace(",", "");    
-
-    console.log(res);
-    console.log(nums);
-
-
-
-
     return res;
 }
 function setButtonsDisable() {
@@ -592,6 +627,7 @@ function setButtonsNotDisable() {
 function setButtonOnSystem() {
     console.log('set on system: ' + system_button.textContent);
     if (system_button.textContent == "bin") {
+        input.textContent = parseInt(input.textContent, 16).toString(2);
         sign_b.disabled = true;
         per.disabled = true;
         fuct.disabled = true;
@@ -615,6 +651,7 @@ function setButtonOnSystem() {
         n9.disabled = true;
     }
     else if (system_button.textContent == "dec") {
+        input.textContent = parseInt(input.textContent, 2).toString(10);
         sign_b.disabled = false;
         per.disabled = false;
         fuct.disabled = false;
@@ -637,6 +674,7 @@ function setButtonOnSystem() {
         n9.disabled = false;
     }
     else if(system_button.textContent == "hex") {
+        input.textContent = parseInt(input.textContent, 10).toString(16);
         sign_b.disabled = true;
         per.disabled = true;
         fuct.disabled = true;

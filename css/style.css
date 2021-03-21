@@ -21,7 +21,7 @@ footer {
 
 .main-space {
     display: flex;
-    height: 3000px;
+    height: 1500px;
     width: 100%;
     position: inherit;
     flex-flow: row;
