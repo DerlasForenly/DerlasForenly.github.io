@@ -15,8 +15,23 @@ let method_integral = document.getElementById('method_integral')
 let func_integral = document.getElementById('function_integral')
 let method_equation = document.getElementById('method_equation')
 let equation = document.getElementById('equation')
-let compare_equation = document.getElementById('compare_equation')
 let compare_integral = document.getElementById('compare_integral')
+
+method_integral.onchange = () => {
+    calculate_integral.onclick()
+}
+
+func_integral.onchange = () => {
+    calculate_integral.onclick()
+}
+
+equation.onchange = () => {
+    calculate_equation.onclick()
+}
+
+method_equation.onchange = () => {
+    calculate_equation.onclick()
+}
 
 equation_field.style.display = "none";
 integral_field.style.display = "none";
