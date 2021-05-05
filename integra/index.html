@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integrals and DE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <fieldset class="input">
+        <legend>What to do?</legend>
+        <div class="input_row">
+            <input type="radio" name="task" id="integral_radio">
+            <label for="integral_radio">Computing the integral</label>
+        </div>
+        <div class="input_row">
+            <input type="radio" name="task" id="equation_radio">
+            <label for="equation_radio">Differential equation solution</label>
+        </div>
+    </fieldset>
+    <fieldset class="input" id="integral_field">
+        <legend>Computing the integral</legend>
+
+        <div class="input_row">
+            <label>Method:</label>
+            <select id="method_integral">
+                <option>Riemann sum (left)</option>
+                <option>Riemann sum (right)</option>
+                <option>Riemann sum (middle)</option>
+                <option>Trapezoidal rule</option>
+                <option>Simpson's rule</option>
+            </select>
+        </div>
+        <div class="input_row">
+            <label>Function:</label>
+            <select id="function_integral">
+                <option>f(x)=exp(-x)</option>
+                <option>f(x)=sin(x)</option>
+                <option>f(x)=exp(-3x + x^2)</option>
+                <option>f(x)=exp(-4x - x^3)</option>
+            </select>
+        </div>
+        <div class="input_row">
+            <label>a = </label>
+            <input class="range" id="a_integral" type="number" placeholder="a" value="0">
+        </div>
+        <div class="input_row">
+            <label>b = </label>
+            <input class="range" id="b_integral" type="number" placeholder="b" value="1">
+        </div>
+        <div class="input_row">
+            <label>N = </label>
+            <input class="range" id="N_integral" type="number" placeholder="b" value="1000">
+        </div>
+
+        <div class="input_row">
+            <button id="calculate_integral">Calculate</button>
+            <button id="compare_integral">Compare</button>
+        </div>
+        
+        <div id="result_div_integral">
+
+        </div>
+
+    </fieldset>
+    <fieldset class="input" id="equation_field">
+        <legend>Differential equation solution</legend>
+        <div class="input_row">
+            <label>Equation:</label>
+            <select id="equation">
+                <option>y' = -xy</option>
+                <option>y' = y + x</option>
+                <option>y' = (3x - 12(x^2))</option>
+                <option>y' = x * x - y</option>
+                <option>y' = x - y + xy</option>
+                <option>y' = 6x^2 + 5xy</option>
+                <option>y' = y</option>
+            </select>
+        </div>
+        <div class="input_row">
+            <label>Method:</label>
+            <select id="method_equation">
+                <option>Euler method</option>
+                <option>Runge-Kutta2</option>
+                <option>Runge-Kutta3</option>
+                <option>Runge-Kutta4</option>
+            </select>
+        </div>
+
+        <div class="input_row">
+            <label>a = </label>
+            <input class="range" id="a_equation" type="number" placeholder="a" value="0">
+        </div>
+
+        <div class="input_row">
+            <label>b = </label>
+            <input class="range" id="b_equation" type="number" placeholder="b" value="1">
+        </div>
+        
+        <div class="input_row">
+            <label>N = </label>
+            <input class="range" id="N_equation" type="number" placeholder="b" value="10">
+        </div>
+
+        <div class="input_row">
+            <label>y0 = </label>
+            <input class="range" id="y0_equation" type="number" placeholder="y0" value="1">
+        </div>
+
+        <div class="input_row">
+            <button id="calculate_equation">Calculate</button>
+        </div>
+        
+
+        <div id="result_div_equation">
+
+        </div>
+
+    </fieldset>
+
+    <script src="js/functions.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/euler.js"></script>
+    <script src="js/runge_kutta.js"></script>
+    <script src="js/riemann_sum.js"></script>
+    <script src="js/simpsons_rule.js"></script>
+    <script src="js/trapezoidal_rule.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

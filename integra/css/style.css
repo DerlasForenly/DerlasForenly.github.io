@@ -1,0 +1,52 @@
+#result_div_equation, #result_div_integral {
+    display: flex;
+    flex-flow: column;
+}
+
+.input {
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    width: auto;
+    margin: 10px;
+}
+
+label {
+    margin: 5px;
+    /* color: #eba */
+}
+
+#input {
+    display: flex;
+    flex-flow: column;
+}
+
+#calculate_integral, #calculate_equation {
+    margin: 5px;
+    width: 80px;
+}
+
+.input_row {
+    width: auto;
+    margin: 5px;
+}
+
+.range {
+    width: 60px;
+}
+
+th, td {
+    font-weight: lighter;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px;
+}
+
+#chart {
+    margin: 10px;
+}
