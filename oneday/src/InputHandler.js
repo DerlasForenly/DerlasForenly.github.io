@@ -36,6 +36,7 @@ export default class InputHandler {
                 game.world.tiles.forEach(row => {
                     row.forEach(tile => {
                         if (tile.x <= mouseX && tile.x + tile.width >= mouseX && tile.y <= mouseY && tile.y + tile.width >= mouseY) {
+                            console.log(tile);
                             tile.setSprite(game.mapEditor.activeTile);
                         }
                     })

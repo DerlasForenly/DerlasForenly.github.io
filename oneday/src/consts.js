@@ -23,3 +23,14 @@ export const PLAYER_STATES = {
     STANDING: 2,
 }
 
+export const TILES = [
+    'landTile',
+    'rockTile',
+    'waterTile',
+]
+
+export const IMPASSABLE_TILES = [
+    'rockTile',
+    'deepWaterTile',
+]
+

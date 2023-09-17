@@ -12,8 +12,8 @@ export default class Slime extends Entity {
         this.spawnWorldX = 2;
         this.spawnWorldY = 2;
 
-        this.x = this.spawnWorldX * this.calculateSpawnPointX();
-        this.y = this.spawnWorldY * this.calculateSpawnPointY();
+        this.x = this.calculateSpawnPointX();
+        this.y = this.calculateSpawnPointY();
 
         this.animation = new MobAnimation(this);
         this.animation.maxFrame = 7;
@@ -23,25 +23,5 @@ export default class Slime extends Entity {
 
     update(deltaTime) {
         this.animation.animate(deltaTime);
-    }
-
-    calculateSpawnPointX() {
-        const tile = this.game.world.tiles[this.spawnWorldX][this.spawnWorldY];
-
-        const centerX = tile.getCenterX();
-
-        const spawnX = centerX - (this.width / 2);
-
-        return spawnX - ((spawnX % 48) / 2);
-    }
-
-    calculateSpawnPointY() {
-        const tile = this.game.world.tiles[this.spawnWorldX][this.spawnWorldY];
-
-        const centerY = tile.getCenterY();
-
-        const spawnY = centerY - (this.height / 2);
-
-        return spawnY - ((spawnY % 48) / 2);
     }
 }

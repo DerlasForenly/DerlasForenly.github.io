@@ -1,5 +1,8 @@
 import { TileAnimation } from "./Animation.js";
 import Entity from "./Entity.js";
+import { IMPASSABLE_TILES } from "./consts.js";
+
+const TILE_SIZE = 48;
 
 export default class Tile extends Entity {
     /**
@@ -9,16 +12,16 @@ export default class Tile extends Entity {
      * @param {String} spriteId 
      * @param {Boolean} isimpassable
      */
-    constructor(game, x, y, spriteId = 'land', isimpassable = false) {
+    constructor(game, x, y, spriteId = 'land') {
         super(game);
 
         this.worldX = x;
         this.worldY = y;
 
-        this.isimpassable = isimpassable;
+        this.isimpassable = this.getIsImpassanle(spriteId);
 
-        this.width = 48;
-        this.height = 48;
+        this.width = TILE_SIZE;
+        this.height = TILE_SIZE;
 
         this.x = x * this.width;
         this.y = y * this.height;
@@ -34,16 +37,16 @@ export default class Tile extends Entity {
         context.fillText(`${this.worldX};${this.worldY}`, this.x + 2, this.y + 11);
     }
 
-    getCenterX() {
-        return this.x + (this.width / 2);
-    }
-
-    getCenterY() {
-        return this.y + (this.height / 2);
-    }
-
     setSprite(spriteId) {
         this.spriteId = spriteId;
         this.image = document.getElementById(spriteId);
+    }
+
+    getIsImpassanle(spriteId) {
+        if (IMPASSABLE_TILES.includes(spriteId)) {
+            return true;
+        }
+
+        return false;
     }
 }

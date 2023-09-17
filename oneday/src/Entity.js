@@ -59,5 +59,31 @@ export default class Entity {
         this.currentState.enter();
     }
 
+    getCenterX() {
+        return this.x + (this.width / 2);
+    }
 
+    getCenterY() {
+        return this.y + (this.height / 2);
+    }
+
+    calculateSpawnPointX() {
+        const tile = this.game.world.tiles[this.spawnWorldX][this.spawnWorldY];
+
+        const centerX = tile.getCenterX();
+
+        const spawnX = centerX - (this.width / 2);
+
+        return spawnX;
+    }
+
+    calculateSpawnPointY() {
+        const tile = this.game.world.tiles[this.spawnWorldX][this.spawnWorldY];
+
+        const centerY = tile.getCenterY();
+
+        const spawnY = centerY - (this.height / 2);
+
+        return spawnY;
+    }
 }

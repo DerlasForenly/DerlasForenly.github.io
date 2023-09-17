@@ -12,14 +12,14 @@ export default class Player extends Entity {
         this.width = 48;
         this.height = 48;
 
-        this.spawnWorldX = 31;
-        this.spawnWorldY = 31;
+        this.spawnWorldX = 6;
+        this.spawnWorldY = 6;
 
         this.maxXSpeed = 1;
         this.maxYSpeed = 1;
 
-        this.x = 6 * this.width;
-        this.y = 6 * this.height;
+        this.x = this.calculateSpawnPointX();
+        this.y = this.calculateSpawnPointY();
 
         this.movePlayerX = false;
         this.movePlayerY = false;
@@ -91,8 +91,21 @@ export default class Player extends Entity {
         this.handleOpositInputs(input);
     }
 
+    handleObstacle() {
+        this.game.world.tiles.forEach(row => {
+            row.forEach(tile => {
+                if (tile.x <= this.getCenterX() && tile.x + tile.width >= this.getCenterX() && tile.y <= this.getCenterY() && tile.y + tile.width >= this.getCenterY()) {
+                    tile.setSprite('land_s');
+                } else if (tile.spriteId === 'land_s') {
+                    tile.setSprite('land');
+                }
+            })
+        });
+    }
+
     moveCamera() {
         this.handlePlayScreenBorders();
+        this.handleObstacle();
 
         this.game.world.tiles.forEach(row => {
             row.forEach(tile => {
