@@ -2,6 +2,11 @@ import Game from "./src/Game.js";
 
 const socket = new WebSocket('ws://localhost:8080');
 
+const canvasSizes = {
+    width: 624,
+    height: 624,
+}
+
 socket.addEventListener('open', (event) => {
     console.log('Connected to the server');
 });
