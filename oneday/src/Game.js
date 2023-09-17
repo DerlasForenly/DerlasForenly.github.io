@@ -3,6 +3,7 @@ import InputHandler from "../src/InputHandler.js";
 import World from "./World.js";
 import Rock from "./Rock.js";
 import MapEditor from "./MapEditor.js";
+import Slime from "./Slime.js";
 
 export default class Game {
     /**
@@ -19,7 +20,7 @@ export default class Game {
         this.inputHandler = new InputHandler(this);
         this.mapEditor = new MapEditor(this.world);
 
-        this.entities = [new Rock(this)];
+        this.entities = [new Rock(this), new Slime(this)];
     }
 
     /**
@@ -42,5 +43,8 @@ export default class Game {
      */
     update(deltaTime) {
         this.player.update(this.inputHandler.keys, deltaTime);
+        this.entities.forEach(entity => {
+            entity.update(deltaTime);
+        });
     }
 }

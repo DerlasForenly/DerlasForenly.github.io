@@ -9,16 +9,16 @@ export default class World {
         this.worldXSize = 60;
         this.worldYSize = 60;
 
-        this.minWorldX = this.worldXSize / -2;
-        this.minWorldY = this.worldYSize / -2;
-        this.maxWorldX = this.worldXSize / 2;
-        this.maxWorldY = this.worldYSize / 2;
+        this.minWorldX = 0;
+        this.minWorldY = 0;
+        this.maxWorldX = 60;
+        this.maxWorldY = 60;
 
         for (let i = 0; i <= this.worldXSize; i++) {
             this.tiles.push([]);
 
             for (let j = 0; j <= this.worldYSize; j++) {
-                this.tiles[i].push(new Tile(this.game, i - this.worldXSize / 2, j - this.worldYSize / 2));
+                this.tiles[i].push(new Tile(this.game, i, j));
             }
         }
     }

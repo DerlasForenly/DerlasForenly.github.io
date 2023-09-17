@@ -66,7 +66,7 @@ export class Animation {
      * @param {CanvasRenderingContext2D} context 
      */
     draw(context) {
-        
+
     }
 }
 
@@ -79,7 +79,6 @@ export class TileAnimation extends Animation {
         super(entity);
 
         this.maxFrame = 1;
-        this.image = document.getElementById('land');
     }
 
     /**
@@ -88,7 +87,7 @@ export class TileAnimation extends Animation {
      */
     draw(context) {
         context.drawImage(
-            this.image,
+            this.entity.image,
             this.frameX * this.entity.width, 
             this.frameY * this.entity.height, 
             this.entity.width, 
@@ -108,8 +107,6 @@ export class MobAnimation extends Animation {
      */
     constructor(entity) {
         super(entity);
-
-        this.image = document.getElementById('rock');
     }
 
     /**
@@ -120,7 +117,7 @@ export class MobAnimation extends Animation {
         const referenceTile = this.entity.game.world.tiles[0][0];
 
         context.drawImage(
-            this.image,
+            this.entity.image,
             this.frameX * this.entity.width, 
             this.frameY * this.entity.height, 
             this.entity.width, 
@@ -141,7 +138,7 @@ export class PlayerAnimation extends Animation {
     constructor(entity) {
         super(entity);
 
-        this.image = document.getElementById('player');
+        
     }
 
     /**
@@ -171,7 +168,7 @@ export class PlayerAnimation extends Animation {
         }
 
         context.drawImage(
-            this.image,
+            this.entity.image,
             this.frameX * this.entity.width, 
             this.frameY * this.entity.height, 
             this.entity.width, 

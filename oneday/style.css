@@ -14,7 +14,7 @@
     max-height: 100%;
 }
 
-#player, #land, #rock, #spark {
+#player, #land, #rock, #spark, #slime {
     display: none;
 }
 

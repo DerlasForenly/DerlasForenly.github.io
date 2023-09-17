@@ -1,6 +1,7 @@
 import { DIRECTIONS } from "./consts.js";
 import Entity from "./Entity.js";
-import { Animation, PlayerAnimation } from "./Animation.js";
+import { PlayerAnimation } from "./Animation.js";
+import Tile from "./Tile.js";
 
 export default class Player extends Entity {
     constructor(game) {
@@ -11,15 +12,19 @@ export default class Player extends Entity {
         this.width = 48;
         this.height = 48;
 
-        this.x = 6 * this.width;
-        this.y = 6 * this.height;
+        this.spawnWorldX = 31;
+        this.spawnWorldY = 31;
 
         this.maxXSpeed = 1;
         this.maxYSpeed = 1;
 
+        this.x = 6 * this.width;
+        this.y = 6 * this.height;
+
         this.movePlayerX = false;
         this.movePlayerY = false;
 
+        this.image = document.getElementById('player');
         this.animation = new PlayerAnimation(this);
     }
 

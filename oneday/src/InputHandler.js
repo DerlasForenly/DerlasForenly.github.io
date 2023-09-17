@@ -29,6 +29,8 @@ export default class InputHandler {
             var mouseX = event.clientX - rect.left;
             var mouseY = event.clientY - rect.top;
 
+            console.log(mouseX, mouseY);
+
             if (game.mapEditor.isActive) {
                 // Update to find exact element, not loop it
                 game.world.tiles.forEach(row => {

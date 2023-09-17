@@ -5,10 +5,11 @@ export default class Entity {
     constructor(game) {
         this.game = game;
 
-        this.x = 0;
-        this.y = 0;
         this.width = 0;
         this.height = 0;
+
+        this.spawnWorldX = 0;
+        this.spawnWorldY = 0;
 
         this.xSpeed = 0;
         this.ySpeed = 0;
@@ -57,4 +58,6 @@ export default class Entity {
         this.currentState = state;
         this.currentState.enter();
     }
+
+
 }
