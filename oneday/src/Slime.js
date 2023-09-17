@@ -3,14 +3,11 @@ import Entity from "./Entity.js";
 import Tile from "./Tile.js";
 
 export default class Slime extends Entity {
-    constructor(game) {
-        super(game);
+    constructor(game, worldX, worldY) {
+        super(game, worldX, worldY);
 
         this.width = 36;
         this.height = 22;
-
-        this.spawnWorldX = 2;
-        this.spawnWorldY = 2;
 
         this.x = this.calculateSpawnPointX();
         this.y = this.calculateSpawnPointY();

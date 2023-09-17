@@ -1,13 +1,13 @@
 import Tile from "./Tile.js";
 
 export default class World {
-    constructor(game) {
+    constructor(game, sizeX, sizeY) {
         this.game = game;
 
         this.tiles = [];
 
-        this.worldXSize = 60;
-        this.worldYSize = 60;
+        this.worldXSize = sizeX;
+        this.worldYSize = sizeY;
 
         this.minWorldX = 0;
         this.minWorldY = 0;

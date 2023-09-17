@@ -2,14 +2,14 @@ import { Standing } from "./playerStates.js";
 import { DIRECTIONS } from "./consts.js";
 
 export default class Entity {
-    constructor(game) {
+    constructor(game, worldX, worldY) {
         this.game = game;
 
         this.width = 0;
         this.height = 0;
 
-        this.spawnWorldX = 0;
-        this.spawnWorldY = 0;
+        this.spawnWorldX = worldX;
+        this.spawnWorldY = worldY;
 
         this.xSpeed = 0;
         this.ySpeed = 0;

@@ -4,16 +4,13 @@ import { PlayerAnimation } from "./Animation.js";
 import Tile from "./Tile.js";
 
 export default class Player extends Entity {
-    constructor(game) {
-        super(game);
+    constructor(game, worldX, worldY) {
+        super(game, worldX, worldY);
 
         this.direction = DIRECTIONS.S;
 
         this.width = 48;
         this.height = 48;
-
-        this.spawnWorldX = 6;
-        this.spawnWorldY = 6;
 
         this.maxXSpeed = 1;
         this.maxYSpeed = 1;
@@ -109,17 +106,17 @@ export default class Player extends Entity {
 
         this.game.world.tiles.forEach(row => {
             row.forEach(tile => {
-                if (tile.worldX === this.game.world.minWorldX && tile.x >= 0 && this.xSpeed > 0) {
+                if (tile.worldX === 0 && tile.x >= 0 && this.xSpeed > 0) {
                     this.movePlayerX = true;
                 }
-                if (tile.worldX === this.game.world.maxWorldX && tile.x <= this.game.width && this.xSpeed < 0) {
+                if (tile.worldX === this.game.world.worldXSize && tile.x <= this.game.width && this.xSpeed < 0) {
                     this.movePlayerX = true;
                 }
 
-                if (tile.worldY === this.game.world.minWorldY && tile.y >= 0 && this.ySpeed > 0) {
+                if (tile.worldY === 0 && tile.y >= 0 && this.ySpeed > 0) {
                     this.movePlayerY = true;
                 }
-                if (tile.worldY === this.game.world.maxWorldY && tile.y <= this.game.height && this.ySpeed < 0) {
+                if (tile.worldY === this.game.world.worldYSize && tile.y <= this.game.height && this.ySpeed < 0) {
                     this.movePlayerY = true;
                 }
             });
