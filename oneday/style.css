@@ -14,7 +14,7 @@
     max-height: 100%;
 }
 
-#player, #land, #rock {
+#player, #land, #rock, #spark {
     display: none;
 }
 

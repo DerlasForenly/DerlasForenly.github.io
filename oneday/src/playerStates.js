@@ -4,6 +4,9 @@ class State {
     constructor(state) {
         this.state = state;
     }
+
+    enter() {
+    }
 }
 
 export class Moving extends State {
@@ -13,9 +16,10 @@ export class Moving extends State {
         this.player = player;
     }
 
-    enter() {
-    }
-
+    /**
+     * 
+     * @param {Array} input 
+     */
     handleInput(input) {
         if (!input.includes('ArrowLeft') && !input.includes('ArrowRight') && !input.includes('ArrowDown') && !input.includes('ArrowUp')) {
             this.player.setState(new Standing(this.player));
@@ -30,9 +34,10 @@ export class Standing extends State {
         this.player = player;
     }
 
-    enter() {
-    }
-
+    /**
+     * 
+     * @param {Array} input 
+     */
     handleInput(input) {
         if (input.includes('ArrowLeft') || input.includes('ArrowRight') || input.includes('ArrowDown') || input.includes('ArrowUp')) {
             this.player.setState(new Moving(this.player));

@@ -1,6 +1,6 @@
 import { DIRECTIONS } from "./consts.js";
 import Entity from "./Entity.js";
-import { Animation } from "./Animation.js";
+import { Animation, PlayerAnimation } from "./Animation.js";
 
 export default class Player extends Entity {
     constructor(game) {
@@ -20,16 +20,11 @@ export default class Player extends Entity {
         this.movePlayerX = false;
         this.movePlayerY = false;
 
-        this.animation = new Animation(this);
-
-        this.image = document.getElementById('player');
+        this.animation = new PlayerAnimation(this);
     }
 
     update(input, deltaTime) {
         this.handleInput(input);
-        this.handleInputRelease(input);
-        this.handleOpositInputs(input);
-        this.handleGameBorders();
         this.moveCamera();
 
         this.currentState.handleInput(input);
@@ -54,7 +49,7 @@ export default class Player extends Entity {
         }
     }
 
-    handleGameBorders() {
+    handlePlayScreenBorders() {
         if (this.x < 0) {
             this.x = 0;
         }
@@ -86,9 +81,14 @@ export default class Player extends Entity {
         if (input.includes('Enter')) {
             console.log('Enter has been pressed');
         }
+
+        this.handleInputRelease(input);
+        this.handleOpositInputs(input);
     }
 
     moveCamera() {
+        this.handlePlayScreenBorders();
+
         this.game.world.tiles.forEach(row => {
             row.forEach(tile => {
                 if (tile.worldX === this.game.world.minWorldX && tile.x >= 0 && this.xSpeed > 0) {

@@ -1,5 +1,27 @@
 import Game from "./src/Game.js";
 
+const socket = new WebSocket('ws://localhost:8080');
+
+socket.addEventListener('open', (event) => {
+    console.log('Connected to the server');
+});
+
+socket.addEventListener('message', (event) => {
+    console.log(event.data);
+});
+
+socket.addEventListener('close', (event) => {
+    if (event.wasClean) {
+        console.log(`Closed cleanly, code=${event.code}, reason=${event.reason}`);
+    } else {
+        console.error('Connection died');
+    }
+});
+
+function sendMessage() {
+    socket.send('Hello');
+}
+
 window.addEventListener('load', function () {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
@@ -10,7 +32,7 @@ window.addEventListener('load', function () {
     const game = new Game(canvas.width, canvas.height);
     let lastTime = 0;
 
-    function animate(timeStamt) {
+    function animate(timeStamt = 0) {
         const deltaTime = timeStamt - lastTime;
         lastTime = timeStamt;
 
@@ -20,5 +42,6 @@ window.addEventListener('load', function () {
         requestAnimationFrame(animate);
     }
 
-    animate(0);
+    animate();
 });
+

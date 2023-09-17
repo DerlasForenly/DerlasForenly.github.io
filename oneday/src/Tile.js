@@ -15,7 +15,5 @@ export default class Tile extends Entity {
         this.y = y * this.height;
         
         this.animation = new TileAnimation(this);
-
-        this.image = document.getElementById('land');
     }
 }

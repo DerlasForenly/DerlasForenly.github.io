@@ -1,7 +1,14 @@
+import Entity from "./Entity.js";
+import Player from "./Player.js";
+import Tile from "./Tile.js";
 import { DIRECTIONS } from "./consts.js";
 import { Standing } from "./playerStates.js";
 
 export class Animation {
+    /**
+     * 
+     * @param {Entity} entity 
+     */
     constructor(entity) {
         this.entity = entity;
 
@@ -10,13 +17,18 @@ export class Animation {
         this.frameTimer = 0;
 
         this.maxFrame = 3;
-        this.reverceFrame = false;
+        this.reverceFrame = false; // current frames directions, by defaulf from left to right
         this.reverceAnimation = true;
 
         this.frameX = 0;
         this.frameY = 0;
     }
 
+    /**
+     * You can ran animation in a loop like this frames order 0, 1, 2, 3, 2, 1, 0
+     * 
+     * @param {Number} deltaTime 
+     */
     animate(deltaTime) {
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
@@ -49,6 +61,93 @@ export class Animation {
         }
     }
 
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} context 
+     */
+    draw(context) {
+        
+    }
+}
+
+export class TileAnimation extends Animation {
+    /**
+     * 
+     * @param {Tile} entity 
+     */
+    constructor(entity) {
+        super(entity);
+
+        this.maxFrame = 1;
+        this.image = document.getElementById('land');
+    }
+
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} context 
+     */
+    draw(context) {
+        context.drawImage(
+            this.image,
+            this.frameX * this.entity.width, 
+            this.frameY * this.entity.height, 
+            this.entity.width, 
+            this.entity.height, 
+            this.entity.x, 
+            this.entity.y, 
+            this.entity.width, 
+            this.entity.height
+        );
+    }
+}
+
+export class MobAnimation extends Animation {
+    /**
+     * 
+     * @param {Entity} entity 
+     */
+    constructor(entity) {
+        super(entity);
+
+        this.image = document.getElementById('rock');
+    }
+
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} context 
+     */
+    draw(context) {
+        const referenceTile = this.entity.game.world.tiles[0][0];
+
+        context.drawImage(
+            this.image,
+            this.frameX * this.entity.width, 
+            this.frameY * this.entity.height, 
+            this.entity.width, 
+            this.entity.height, 
+            this.entity.x + referenceTile.x, 
+            this.entity.y + referenceTile.y, 
+            this.entity.width, 
+            this.entity.height
+        );
+    }
+}
+
+export class PlayerAnimation extends Animation {
+    /**
+     * 
+     * @param {Player} entity 
+     */
+    constructor(entity) {
+        super(entity);
+
+        this.image = document.getElementById('player');
+    }
+
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} context 
+     */
     draw(context) {
         this.entity.updateDirection();
 
@@ -72,7 +171,7 @@ export class Animation {
         }
 
         context.drawImage(
-            this.entity.image,
+            this.image,
             this.frameX * this.entity.width, 
             this.frameY * this.entity.height, 
             this.entity.width, 
@@ -83,50 +182,4 @@ export class Animation {
             this.entity.height
         );
     }
-}
-
-export class TileAnimation extends Animation {
-    constructor(entity) {
-        super(entity);
-    }
-
-    draw(context) {
-        context.drawImage(
-            this.entity.image,
-            this.frameX * this.entity.width, 
-            this.frameY * this.entity.height, 
-            this.entity.width, 
-            this.entity.height, 
-            this.entity.x, 
-            this.entity.y, 
-            this.entity.width, 
-            this.entity.height
-        );
-    }
-}
-
-export class MobAnimation extends Animation {
-    constructor(entity) {
-        super(entity);
-    }
-
-    draw(context) {
-        const referenceTile = this.entity.game.world.tiles[0][0];
-
-        context.drawImage(
-            this.entity.image,
-            this.frameX * this.entity.width, 
-            this.frameY * this.entity.height, 
-            this.entity.width, 
-            this.entity.height, 
-            this.entity.x + referenceTile.x, 
-            this.entity.y + referenceTile.y, 
-            this.entity.width, 
-            this.entity.height
-        );
-    }
-}
-
-export class PlayerAnimation extends Animation {
-
 }

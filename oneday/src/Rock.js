@@ -12,7 +12,5 @@ export default class Rock extends Entity {
         this.y = 6 * this.height;
 
         this.animation = new MobAnimation(this);
-
-        this.image = document.getElementById('rock');
     }
 }
