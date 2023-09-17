@@ -106,17 +106,17 @@ export default class Player extends Entity {
 
         this.game.world.tiles.forEach(row => {
             row.forEach(tile => {
-                if (tile.worldX === 0 && tile.x >= 0 && this.xSpeed > 0) {
+                if (tile.spawnWorldX === 0 && tile.x >= 0 && this.xSpeed > 0) {
                     this.movePlayerX = true;
                 }
-                if (tile.worldX === this.game.world.worldXSize && tile.x <= this.game.width && this.xSpeed < 0) {
+                if (tile.spawnWorldX === this.game.world.worldXSize && tile.x <= this.game.width && this.xSpeed < 0) {
                     this.movePlayerX = true;
                 }
 
-                if (tile.worldY === 0 && tile.y >= 0 && this.ySpeed > 0) {
+                if (tile.spawnWorldY === 0 && tile.y >= 0 && this.ySpeed > 0) {
                     this.movePlayerY = true;
                 }
-                if (tile.worldY === this.game.world.worldYSize && tile.y <= this.game.height && this.ySpeed < 0) {
+                if (tile.spawnWorldY === this.game.world.worldYSize && tile.y <= this.game.height && this.ySpeed < 0) {
                     this.movePlayerY = true;
                 }
             });
