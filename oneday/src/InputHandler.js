@@ -9,7 +9,7 @@ export default class InputHandler {
     constructor(game) {
         this.game = game;
         this.keys = [];
-
+        
         const canvas = document.getElementById('canvas1');
 
         window.addEventListener('keydown', e => {
