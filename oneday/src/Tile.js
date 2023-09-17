@@ -2,20 +2,31 @@ import { TileAnimation } from "./Animation.js";
 import Entity from "./Entity.js";
 
 export default class Tile extends Entity {
-    constructor(game, x, y) {
+    /**
+     * @param {Game} game 
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {String} spriteId 
+     * @param {Boolean} isimpassable
+     */
+    constructor(game, x, y, spriteId = 'land', isimpassable = false) {
         super(game);
 
         this.worldX = x;
         this.worldY = y;
+
+        this.isimpassable = isimpassable;
 
         this.width = 48;
         this.height = 48;
 
         this.x = x * this.width;
         this.y = y * this.height;
+
+        this.spriteId = spriteId;
         
         this.animation = new TileAnimation(this);
-        this.image = document.getElementById('land');
+        this.image = document.getElementById(spriteId);
     }
 
     draw(context) {
@@ -29,5 +40,10 @@ export default class Tile extends Entity {
 
     getCenterY() {
         return this.y + (this.height / 2);
+    }
+
+    setSprite(spriteId) {
+        this.spriteId = spriteId;
+        this.image = document.getElementById(spriteId);
     }
 }
