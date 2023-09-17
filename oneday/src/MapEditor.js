@@ -3,7 +3,7 @@ export default class MapEditor {
         this.world = world;
         this.isActive = true;
 
-        this.activeTile = null;
+        this.activeTile = document.getElementById('rock');
 
         document.getElementById('rockButton').onclick = e => {
             console.log('Activated rock tile');
